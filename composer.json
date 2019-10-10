@@ -1,0 +1,41 @@
+{
+    "name": "iamproperty/printer",
+    "description": "PDF printing like Laravel's Mail package",
+    "type": "library",
+    "authors": [
+        {
+            "name": "James Fenwick",
+            "email": "james.fenwick@iamproperty.com"
+        }
+    ],
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "IAMProperty\\Printer\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\Printer\\": "tests"
+        }
+    },
+    "require": {
+        "php": "^7.3",
+        "illuminate/container": "^6.0",
+        "illuminate/http": "^6.0",
+        "illuminate/support": "^6.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.0"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "IAMProperty\\Printer\\PrintServiceProvider"
+            ]
+        }
+    }
+}
