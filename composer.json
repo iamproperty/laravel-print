@@ -1,6 +1,6 @@
 {
-    "name": "iamproperty/printer",
-    "description": "PDF printing like Laravel's Mail package",
+    "name": "iamproperty/print",
+    "description": "Document printing like Laravel's Mail package",
     "type": "library",
     "authors": [
         {
@@ -23,6 +23,7 @@
         "php": "^7.3",
         "illuminate/container": "^6.0",
         "illuminate/http": "^6.0",
+        "illuminate/log": "^6.0",
         "illuminate/support": "^6.0"
     },
     "require-dev": {
@@ -35,7 +36,10 @@
         "laravel": {
             "providers": [
                 "IAMProperty\\Printer\\PrintServiceProvider"
-            ]
+            ],
+            "aliases": {
+                "Printer": "IAMProperty\\Printer\\Facades\\Printer"
+            }
         }
     }
 }

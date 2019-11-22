@@ -152,12 +152,18 @@ Sometimes you may wish to capture the HTML content of a printable without conver
 <a name="previewing-printables-in-the-browser"></a>
 ### Previewing Printables In The Browser
 
-When designing a printable's template, it is convenient to quickly preview the rendered printable in your browser like a typical Blade template. For this reason, you may return any printable directly from a route Closure or controller. When a printable is returned, it will be rendered and displayed in the browser, allowing you to quickly preview its design without needing to open a seperate PDF file:
+When designing a printable's template, it is convenient to quickly preview the rendered printable in your browser like a typical Blade template. For this reason, you may return any printable directly from a route Closure or controller. When a printable is returned, it will be rendered and displayed in the browser, allowing you to quickly preview its design without needing to open a separate PDF file:
 
     Route::get('printable', function () {
         $invoice = App\Invoice::find(1);
 
         return new App\Printed\InvoicePaid($invoice);
     });
-    
-> **NOTE:** this does not work with the `file` driver as the content type of the returned response is incorrect. 
+
+It's also possible to use the `Printer` facade to render a printable's template, without rendering the document:
+
+    Route::get('printable', function () {
+        $invoice = App\Invoice::find(1);
+
+        return Printer::render(new App\Printed\InvoicePaid($invoice));
+    });

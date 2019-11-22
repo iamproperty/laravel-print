@@ -5,7 +5,6 @@ namespace IAMProperty\Printer;
 use IAMProperty\Printer\Contracts\Printable as PrintableContract;
 use IAMProperty\Printer\Contracts\Printer;
 use Illuminate\Container\Container;
-use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Support\Traits\Localizable;
@@ -13,7 +12,7 @@ use ReflectionClass;
 use ReflectionProperty;
 use Symfony\Component\HttpFoundation\Response;
 
-class Printable implements Htmlable, PrintableContract, Renderable, Responsable
+class Printable implements PrintableContract, Renderable, Responsable
 {
     use Localizable;
 
@@ -23,7 +22,6 @@ class Printable implements Htmlable, PrintableContract, Renderable, Responsable
      * @var string
      */
     public $locale;
-
 
     /**
      * The view to use for the message.
@@ -40,11 +38,11 @@ class Printable implements Htmlable, PrintableContract, Renderable, Responsable
     public $viewData = [];
 
     /**
-     * Get content as a string of HTML.
+     * Get the evaluated contents of the object.
      *
      * @return string
      */
-    public function toHtml()
+    public function render()
     {
         return $this->withLocale($this->locale, function () {
             Container::getInstance()->call([$this, 'build']);
@@ -53,18 +51,6 @@ class Printable implements Htmlable, PrintableContract, Renderable, Responsable
                 $this->view, $this->buildViewData()
             );
         });
-    }
-
-    /**
-     * Get the evaluated contents of the object.
-     *
-     * @return string
-     */
-    public function render()
-    {
-        $printer = Container::getInstance()->make('printer');
-
-        return $this->print($printer);
     }
 
     /**
@@ -78,7 +64,7 @@ class Printable implements Htmlable, PrintableContract, Renderable, Responsable
         return $this->withLocale($this->locale, function () use ($printer) {
             Container::getInstance()->call([$this, 'build']);
 
-            return $printer->raw($this->view, $this->buildViewData());
+            return $printer->print($this->view, $this->buildViewData());
         });
 
     }
@@ -91,8 +77,10 @@ class Printable implements Htmlable, PrintableContract, Renderable, Responsable
      */
     public function toResponse($request)
     {
-        return new Response($this->render(), Response::HTTP_OK, [
-            'Content-Type' => 'application/pdf',
+        $printer = Container::getInstance()->make('printer');
+
+        return new Response($this->print($printer), Response::HTTP_OK, [
+            'Content-Type' => $printer->format(),
         ]);
     }
 
