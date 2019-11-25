@@ -43,6 +43,6 @@ class RendererManager extends Manager
      */
     public function getDefaultDriver()
     {
-        return $this->config->get('printer.default');
+        return $this->config->get('printer.driver');
     }
 }
