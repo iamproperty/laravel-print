@@ -17,7 +17,7 @@ Printer provides a way to render PDFs using an API similar to [Laravel's Mailabl
 ### Installation
 
 ```sh
-$ composer require iamproperty/printer
+$ composer require iamproperty/print
 ```
 
 <a name="writing-printables"></a>
