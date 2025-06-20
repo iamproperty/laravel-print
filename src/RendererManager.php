@@ -33,7 +33,7 @@ class RendererManager extends Manager
      */
     protected function createArrayDriver()
     {
-        return new ArrayRenderer();
+        return new ArrayRenderer;
     }
 
     /**

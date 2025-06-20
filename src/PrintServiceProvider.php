@@ -7,7 +7,7 @@ use Illuminate\Support\ServiceProvider;
 
 class PrintServiceProvider extends ServiceProvider implements DeferrableProvider
 {
-    private const CONFIG_FILE = __DIR__ . '/../config/printer.php';
+    private const CONFIG_FILE = __DIR__.'/../config/printer.php';
 
     /**
      * Register the service provider.
@@ -69,7 +69,7 @@ class PrintServiceProvider extends ServiceProvider implements DeferrableProvider
     public function provides()
     {
         return [
-            'printer', 'printer.renderer'
+            'printer', 'printer.renderer',
         ];
     }
 }

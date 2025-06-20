@@ -17,7 +17,6 @@ class LogRenderer extends Renderer implements RendererContract
     /**
      * Create a new log renderer instance.
      *
-     * @param  \Psr\Log\LoggerInterface  $logger
      * @return void
      */
     public function __construct(LoggerInterface $logger)

@@ -55,9 +55,6 @@ class Printable implements PrintableContract, Renderable, Responsable
 
     /**
      * Print the page using using the given printer.
-     *
-     * @param  \IAMProperty\Printer\Contracts\Printer  $printer
-     * @return string
      */
     public function print(Printer $printer): string
     {
@@ -108,7 +105,6 @@ class Printable implements PrintableContract, Renderable, Responsable
      * Set the view and view data for the message.
      *
      * @param  string  $view
-     * @param  array  $data
      * @return $this
      */
     public function view($view, array $data = [])
@@ -123,7 +119,7 @@ class Printable implements PrintableContract, Renderable, Responsable
      * Set the view data for the message.
      *
      * @param  string|array  $key
-     * @param  mixed   $value
+     * @param  mixed  $value
      * @return $this
      */
     public function with($key, $value = null)

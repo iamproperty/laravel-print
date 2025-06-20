@@ -21,7 +21,7 @@ class ArrayRenderer extends Renderer implements RendererContract
      */
     public function __construct()
     {
-        $this->documents = new Collection();
+        $this->documents = new Collection;
     }
 
     /**
@@ -51,6 +51,6 @@ class ArrayRenderer extends Renderer implements RendererContract
      */
     public function flush()
     {
-        return $this->documents = new Collection();
+        return $this->documents = new Collection;
     }
 }

@@ -6,8 +6,6 @@ interface Renderer
 {
     /**
      * The mime type of the rendered document.
-     *
-     * @return string
      */
     public function format(): string;
 
@@ -15,7 +13,6 @@ interface Renderer
      * Render a document.
      *
      * @param  string  $document
-     * @return string
      */
     public function render($document): string;
 }
